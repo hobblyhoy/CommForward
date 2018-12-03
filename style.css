@@ -1,0 +1,20 @@
+/*Web font builder: https://www.fontsquirrel.com/tools/webfont-generator*/
+/*@font-face {
+    font-family: Aller;
+    src: url(./Fonts/aller_rg-webfont.woff);
+}*/
+
+
+body {
+    /*font-family: Aller, sans-serif;*/
+    margin: 0;
+}
+
+#header {
+    height: 20vh;
+}
+
+#block-container {
+    height: 80vh;
+    background-color: blue;
+}
