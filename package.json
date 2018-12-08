@@ -1,0 +1,29 @@
+{
+  "name": "commforward",
+  "version": "1.0.0",
+  "description": "A straightforward method for those with difficultly communicating to show simple requests and emotions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hobblyhoy/CommForward.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hobblyhoy/CommForward/issues"
+  },
+  "homepage": "https://github.com/hobblyhoy/CommForward#readme",
+  "devDependencies": {
+    "css-loader": "^2.0.0",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.5.18",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "vue": "^2.5.18"
+  }
+}
