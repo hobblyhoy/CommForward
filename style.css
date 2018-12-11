@@ -4,11 +4,15 @@
     src: url(./Fonts/aller_rg-webfont.woff);
 }*/
 
+/*https://www.color-hex.com/color-palette/69481*/
 
 /* Real body */
 body {
     /*font-family: Aller, sans-serif;*/
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 15px;
+    background-color: #f4f0e6;
 }
 
 
@@ -22,18 +26,20 @@ body {
 	width: 100%; 
 	height: 85vh; 
 	overflow-y: auto;
+
 }
 
 
 /* Panel Selector */
 #panel-selector {
-	
+	height: 100%;
 }
 
 .selector-option {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 100%;
 }
 
 
@@ -42,6 +48,15 @@ body {
 
 
 /* Util */
+.round-top {
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.round-bottom {
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
 /*.row-no-container {
 	margin-left: 0 !important;
 	margin-right: 0 !important;

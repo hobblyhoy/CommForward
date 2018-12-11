@@ -4,19 +4,22 @@ import Vue from 'vue';
 // requires more work though, see:
 // https://getbootstrap.com/docs/4.0/getting-started/webpack/
 import Bootstrap from 'bootstrap'; 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Scripts/CommForwardStore.js';
+
+// CSS
+import 'bootstrap/dist/css/bootstrap.min.css'; //consider bootstap-grid if we can get away with it
+import './style.css'
 
 // Components
 import Body from './Scripts/Body.vue';
 import PanelSelector from './Scripts/PanelSelector.vue';
 import Panel from './Scripts/Panel.vue';
-
-console.log('index.js load');
+import Block from './Scripts/Block.vue';
 
 Vue.component('vue-body', Body);
 Vue.component('panel-selector', PanelSelector);
 Vue.component('panel', Panel);
+Vue.component('block', Block);
 
 new Vue({
 	el: '#app'
