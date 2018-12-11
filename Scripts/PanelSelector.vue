@@ -1,12 +1,18 @@
 <template>
-    <div id="primary-selector">
-        <div class="selector-option">
-            I Need
+    <div class="container-fluid">
+
+        <div id="panel-selector" class="row">
+            <div class="col-6">
+                <div class="selector-option" style="background-color: blue;">
+                    <div>I Need</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="selector-option" style="background-color: red;">
+                    <div>I Need</div>
+                </div>
+            </div>
         </div>
-        <div class="selector-option">
-            I Feel
-        </div>
-        Wraps to 2nd line thanks to whitespace. Solveable but w/e, im going to import bootstrap soon anyways...
     </div>
 </template>
 
@@ -32,3 +38,4 @@
 
 <style>
 </style>
+

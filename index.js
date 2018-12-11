@@ -1,4 +1,10 @@
 import Vue from 'vue';
+// todo gotta get this import size down. Consider individual plugin imports for bootstrap
+// e.g. import 'bootstrap/js/dist/util';
+// requires more work though, see:
+// https://getbootstrap.com/docs/4.0/getting-started/webpack/
+import Bootstrap from 'bootstrap'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Scripts/CommForwardStore.js';
 
 // Components
