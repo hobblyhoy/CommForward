@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div id="primary-selector-container">
-            <primary-selector></primary-selector>
+        <div id="panel-selector-container">
+            <panel-selector></panel-selector>
         </div>
         <div id="panel-container">
             <panel></panel>
