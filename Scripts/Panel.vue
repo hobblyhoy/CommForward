@@ -33,8 +33,19 @@
         }
     };
 
+
+    var alarm = new Audio('TempleBell.mp3');
     vueMethods.blockClick = function(block) {
         block.isSelected = !block.isSelected;
+        if (block.name === "Immediate") {
+            if (block.isSelected === true) {
+                alarm.loop = true;
+                alarm.play();
+            } else {
+                alarm.pause();
+                alarm.currentTime = 0;
+            }
+        }
         
         var selectedBlocks = this.store.currentPanel.filter(function(blockFromPanel) {
             return blockFromPanel.isSelected;
@@ -47,8 +58,6 @@
                 block.isSelected = true;
             });
         }.bind(this));
-        
-
     }
 
 

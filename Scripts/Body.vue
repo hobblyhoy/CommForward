@@ -39,9 +39,12 @@
         }
         
         var feelings = ['Happy', 'Sad', 'Hungry', 'In Pain'];
-        var needs = ['Food', 'Raised', 'Reclined', 'Channel Changed'];
+        var needs = ['Food', 'Raised', 'Reclined', 'Channel Changed', 'Immediate'];
         createAndPushBlocks(feelings, this.store.panels.feel);
         createAndPushBlocks(needs, this.store.panels.need)
+
+        
+
 
         console.log('Finished populating Panels');
     }
