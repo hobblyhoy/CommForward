@@ -2,9 +2,13 @@
     <div class="panel container-fluid">
         <div class="row" >
             <div class="col-12" >
-                <div :style="{ backgroundColor: backgroundColor }" class="round-bottom">
+                <div :style="{ backgroundColor: backgroundColor }" class="round-bottom container-fluid">
                     <div class="row">
-                        <block v-for="block in store.currentPanel" :key="block.id" :data="block"></block>
+                        <block v-for="block in store.currentPanel" 
+                                :key="block.id" 
+                                :data="block"
+                                v-on:blockClick="blockClick">
+                        </block>
                     </div>
                 </div>
             </div>
@@ -29,6 +33,23 @@
         }
     };
 
+    vueMethods.blockClick = function(block) {
+        block.isSelected = !block.isSelected;
+        
+        var selectedBlocks = this.store.currentPanel.filter(function(blockFromPanel) {
+            return blockFromPanel.isSelected;
+        });
+
+        // remove and re-apply isSelected so the animations occur in unison.
+        selectedBlocks.forEach(function(block) {
+            block.isSelected = false;
+            this.$nextTick(function() {
+                block.isSelected = true;
+            });
+        }.bind(this));
+        
+
+    }
 
 
     export default {
@@ -45,7 +66,4 @@
 </script>
 
 <style>
-    .block-test {
-        color: green; /*test*/
-    }
 </style>

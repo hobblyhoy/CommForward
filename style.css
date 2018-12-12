@@ -1,4 +1,5 @@
 /*Web font builder: https://www.fontsquirrel.com/tools/webfont-generator*/
+/* TODO find a font optimized for legibility */
 /*@font-face {
     font-family: Aller;
     src: url(./Fonts/aller_rg-webfont.woff);
@@ -9,45 +10,12 @@
 /* Real body */
 body {
     /*font-family: Aller, sans-serif;*/
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 15px;
+    margin: 0;
     background-color: #f4f0e6;
 }
 
 
-/* Vue Body */
-#panel-selector-container {
-	/*width: 100%;*/ 
-	height: 15vh;
-}
-
-#panel-container {
-	width: 100%; 
-	height: 85vh; 
-	overflow-y: auto;
-
-}
-
-
-/* Panel Selector */
-#panel-selector {
-	height: 100%;
-}
-
-.selector-option {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-}
-
-
-/* Panel */
-
-
-
-/* Util */
+/* Global Util */
 .round-top {
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
@@ -57,12 +25,3 @@ body {
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 }
-/*.row-no-container {
-	margin-left: 0 !important;
-	margin-right: 0 !important;
-}
-
-.col-no-container {
-	padding-left: 0 !important;
-	padding-right: 0 !important;
-}*/

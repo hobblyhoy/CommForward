@@ -66,4 +66,15 @@
 </script>
 
 <style>
+
+    #panel-selector-container {
+        height: 15vh;
+    }
+
+    #panel-container {
+	width: 100%; 
+	height: 85vh; 
+	overflow-y: auto;
+    }
+
 </style>
