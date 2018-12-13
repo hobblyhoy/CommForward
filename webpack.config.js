@@ -32,7 +32,8 @@ module.exports = {
 				, use: [{
 					loader: "file-loader"
 					, options: {
-						useRelativePath: true
+						useRelativePath: false
+						, name: '[name].[ext]'
 					}
 				}]
 			}

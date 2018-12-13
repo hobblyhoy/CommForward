@@ -1,6 +1,11 @@
 <template>
     <div>
         <div id="panel-selector-container">
+            <div style="height: 15px; text-align: right;">
+                <img src="../Icons/settings.png" 
+                        style="vertical-align: top; height: 15px; width: 15px; cursor: pointer;"
+                        v-on:click="store.configMode = !store.configMode">
+            </div>
             <panel-selector></panel-selector>
         </div>
         <div id="panel-container">
@@ -43,7 +48,7 @@
         createAndPushBlocks(feelings, this.store.panels.feel);
         createAndPushBlocks(needs, this.store.panels.need)
 
-        
+
 
 
         console.log('Finished populating Panels');

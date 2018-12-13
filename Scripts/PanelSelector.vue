@@ -44,7 +44,7 @@
 <style>
     #panel-selector {
         height: 100%;
-        padding-top: 15px;
+        /*padding-top: 15px;*/
     }
 
     .panel-selector-option {

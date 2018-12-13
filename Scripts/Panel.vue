@@ -56,7 +56,6 @@
 
         // remove and re-apply isSelected so the animations occur in unison.
         selectedBlocks.forEach(function(block) {
-            console.log('setting ' + block.id + ' to false');
             block.isSelected = false;
             // EDIT figured out why nextTick fails here:
             // "nextTick allows you to do something after you have changed the data and Vue has updated the DOM 
@@ -66,7 +65,6 @@
             // before the browser actually pulls the class.
             // I could code around that but honestly this is the least important feature ever, I'm A-OK with a band-aid.
             setTimeout(function() {
-                console.log('setting ' + block.id + ' to true');
                 block.isSelected = true;
             }, 100);
         }.bind(this));
