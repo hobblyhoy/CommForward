@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="panel-selector-container">
-            <div style="height: 15px; text-align: right;">
+            <div style="height: 10%; text-align: right;">
                 <img src="../Icons/settings.png" 
                         style="vertical-align: top; height: 15px; width: 15px; cursor: pointer;"
                         v-on:click="store.configMode = !store.configMode">

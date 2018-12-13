@@ -1,6 +1,6 @@
 <template>
     <div id="panel-selector" class="container-fluid">
-        <div  class="row" style="height: 100%;">
+        <div  class="row" style="height: 90%;">
             <div class="col-6">
                 <div class="panel-selector-option round-top"
                         :class="{ 'inactive-panel-shadow': store.showPanel !== 'need' }"
