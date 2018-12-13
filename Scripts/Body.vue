@@ -73,7 +73,6 @@
 </script>
 
 <style>
-
     #panel-selector-container {
         height: 15vh;
         position: fixed;
@@ -89,5 +88,4 @@
         height: 85vh; 
         /* overflow-y: auto; */
     }
-
 </style>

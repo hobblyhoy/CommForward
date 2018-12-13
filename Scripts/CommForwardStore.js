@@ -16,8 +16,8 @@ var vueData = {
 		, feel: ['Happy', 'Sad', 'Bored', 'Lonely', 'Sick']
 		, pain: ['Head', 'Neck', 'Chest', 'Stomach', 'Arms', 'Hands', 'Groin', 'Bottom', 'Legs', 'Feet']
 	}
-	, colorNeed: '#d9d9f3'
-	, colorFeel: '#ceefe4'
+	, colorNeed: '#FFDBB9'
+	, colorFeel: '#CEEFE4'
 	, colorPain: '#D6DFF0'
 	, borderRadius: '15px'
 	, configMode: false
