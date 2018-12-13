@@ -11,7 +11,10 @@
 body {
     /*font-family: Aller, sans-serif;*/
     margin: 0;
-    background-color: #f4f0e6;
+	background-color: #f4f0e6;
+	font-family: "Verdana" sans-serif;
+	font-size: 1.5rem;
+	text-align: center;
 }
 
 

@@ -30,7 +30,7 @@
                 var toPush = {
                     id: id
                     , name: name
-                    , logo: id + '.png'
+                    //, logo: id + '.png' //if it's a simple, once used formula why obscure it away into the object?
                     , isSelected: false
                 };
                 
@@ -38,8 +38,8 @@
             });
         }
         
-        var feelings = ['Happy', 'Sad', 'Hungry', 'In Pain'];
-        var needs = ['Food', 'Raised', 'Reclined', 'Channel Changed', 'Immediate'];
+        var feelings = ['Happy', 'Sad', 'Bored', 'Pain'];
+        var needs = ['Food', 'Water', 'Raise', 'Recline', 'Channel Change', 'Immediate Attention'];
         createAndPushBlocks(feelings, this.store.panels.feel);
         createAndPushBlocks(needs, this.store.panels.need)
 

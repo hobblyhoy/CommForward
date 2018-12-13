@@ -9,7 +9,7 @@ module.exports = {
 	, output: {
 		filename: 'build.index.js'
 		, path: path.resolve(__dirname + '/Build')
-		, publicPath: '/Build/'
+		, publicPath: './Build/'
 	}
 	, resolve: {
         alias: {
@@ -26,6 +26,15 @@ module.exports = {
 			,{
 				test: /\.vue/
 				, loader: 'vue-loader'
+			}
+			,{
+				test: /\.(png|svg|jpg|jpeg|gif)$/
+				, use: [{
+					loader: "file-loader"
+					, options: {
+						useRelativePath: true
+					}
+				}]
 			}
 		]
 	}

@@ -3,7 +3,8 @@
         <div class="block-button round-top round-bottom" 
                 v-on:click="$emit('blockClick', data)"
                 :class="{ pulse: data.isSelected }">
-            {{data.name}}
+            <span>{{data.name}}</span>
+            <img :src="imgSrc" width="96px" height="96px">
         </div>
     </div>
 </template>
@@ -13,6 +14,10 @@
     var vueMethods = {};
     var vueComputed = {};
     var vueWatch = {};
+
+    vueComputed.imgSrc = function() {
+        return './Icons/' + this.data.id + '.png';
+    }
 
     export default {
         props: ['data']
@@ -38,6 +43,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+
         border: 2px solid rgba(0,0,0,0.4);
         width: 100%;
         height: 100%;
