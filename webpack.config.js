@@ -2,12 +2,14 @@
 
 var path = require('path');
 var { VueLoaderPlugin } = require('vue-loader');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: path.resolve('./index.js')
 	, mode: 'development'
 	, output: {
-		filename: 'build.index.js'
+		filename: 'build.[chunkhash].index.js'
 		, path: path.resolve(__dirname + '/Build')
 		, publicPath: './Build/'
 	}
@@ -41,5 +43,10 @@ module.exports = {
 	}
 	, plugins: [
 		new VueLoaderPlugin()
+		, new HtmlWebpackPlugin({
+			filename: '../index.html'
+			, template: './index.template.html'
+		})
+		, new CleanWebpackPlugin(['Build'])
 	]
 }
