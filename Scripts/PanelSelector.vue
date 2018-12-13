@@ -1,22 +1,30 @@
 <template>
     <div id="panel-selector" class="container-fluid">
         <div  class="row" style="height: 90%;">
-            <div class="col-6">
+            <div class="col-4">
                 <div class="panel-selector-option round-top"
                         :class="{ 'inactive-panel-shadow': store.showPanel !== 'need' }"
-                        style="background-color: #d9d9f3;" 
+                        :style="{ 'background-color': store.colorNeed }"
                         v-on:click="store.showPanel='need'">
-                    <div>I Need</div>
+                    <div style="padding: 0 10px;">I Need</div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <div class="panel-selector-option round-top" 
                         :class="{ 'inactive-panel-shadow': store.showPanel !== 'feel' }"
-                        style="background-color: #ceefe4;" 
+                        :style="{ 'background-color': store.colorFeel }"
                         v-on:click="store.showPanel='feel'">
-                    <div>I Feel</div>
+                    <div style="padding: 0 10px;">I Feel</div>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="panel-selector-option round-top" 
+                        :class="{ 'inactive-panel-shadow': store.showPanel !== 'pain' }"
+                        :style="{ 'background-color': store.colorPain }" 
+                        v-on:click="store.showPanel='pain'">
+                    <div style="padding: 0 10px;">Pain / Discomfort</div>
+                </div>
+            </div>            
         </div>
     </div>
 </template>
@@ -52,6 +60,9 @@
         justify-content: center;
         align-items: center;
         height: 100%;
+        font-size: 1.75rem;
+        font-weight: bold;
+        cursor: pointer;
     }
 
     .inactive-panel-shadow {

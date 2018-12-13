@@ -2,7 +2,7 @@
     <div class="panel container-fluid">
         <div class="row" >
             <div class="col-12" >
-                <div :style="{ backgroundColor: backgroundColor }" class="round-bottom container-fluid">
+                <div :style="{ backgroundColor: store.currentPanelColor }" class="round-bottom container-fluid">
                     <div class="row">
                         <block v-for="block in store.currentPanel" 
                                 :key="block.id" 
@@ -22,31 +22,23 @@
     var vueComputed = {};
     var vueWatch = {};
 
-    vueComputed.backgroundColor = function() {
-        switch (this.store.showPanel) {
-            case 'need':
-                return this.store.colorNeed;
-            case 'feel':
-                return this.store.colorFeel;
-            default:
-                throw 'Bad panel name in Panel.backgroundColor';
-        }
-    };
-
-
-    var alarm = new Audio('Beep.mp3');
+    var alarmSound = new Audio('Beep.mp3');
+    var clickSound = new Audio('Click.mp3')
     vueMethods.blockClick = function(block) {
         // toggle selection
         block.isSelected = !block.isSelected;
 
-        //trigger warning sounds
+        // Small click noise
+        clickSound.play();
+
+        // Immediate action persistant noise
         if (block.id === "immediateAttention") {
             if (block.isSelected === true) {
-                alarm.loop = true;
-                alarm.play();
+                alarmSound.loop = true;
+                alarmSound.play();
             } else {
-                alarm.pause();
-                alarm.currentTime = 0;
+                alarmSound.pause();
+                alarmSound.currentTime = 0;
             }
         }
         
@@ -85,4 +77,7 @@
 </script>
 
 <style>
+    .panel {
+        margin-bottom: 15px;
+    }
 </style>

@@ -34,9 +34,10 @@
 
 <style>
     .block {
-        height: 10rem;
+        height: 12rem;
         margin-top: 15px;
         margin-bottom: 15px;
+        line-height: 1.8rem;
     }
 
     .block-button {

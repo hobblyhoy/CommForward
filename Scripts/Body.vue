@@ -21,7 +21,8 @@
     var vueWatch = {};
 
     vueMethods.toCamelCase = function (string) {
-        return string.charAt(0).toLowerCase() + string.slice(1).replace(' ', ''); 
+        var regexParensAndWhitespace = /(\(|\)|\s)/g;
+        return string.charAt(0).toLowerCase() + string.slice(1).replace(regexParensAndWhitespace, ''); 
     };
 
     // Create block objects and populate the store.panels
@@ -43,13 +44,9 @@
             });
         }
         
-        var feelings = ['Happy', 'Sad', 'Bored', 'Pain'];
-        var needs = ['Food', 'Water', 'Raise', 'Recline', 'Channel Change', 'Immediate Attention'];
-        createAndPushBlocks(feelings, this.store.panels.feel);
-        createAndPushBlocks(needs, this.store.panels.need)
-
-
-
+        createAndPushBlocks(this.store.panelSeeds.feel, this.store.panels.feel);
+        createAndPushBlocks(this.store.panelSeeds.need, this.store.panels.need);
+        createAndPushBlocks(this.store.panelSeeds.pain, this.store.panels.pain);
 
         console.log('Finished populating Panels');
     }
@@ -77,12 +74,18 @@
 
     #panel-selector-container {
         height: 15vh;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        background-color: #f4f0e6; /* Stop it from being see through on scroll */
     }
 
     #panel-container {
-	width: 100%; 
-	height: 85vh; 
-	overflow-y: auto;
+        width: 100%; 
+        margin-top: 15vh;
+        height: 85vh; 
+        /* overflow-y: auto; */
     }
 
 </style>
