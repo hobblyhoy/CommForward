@@ -3,11 +3,11 @@ import Vue from 'vue';
 // e.g. import 'bootstrap/js/dist/util';
 // requires more work though, see:
 // https://getbootstrap.com/docs/4.0/getting-started/webpack/
-import Bootstrap from 'bootstrap'; 
+// import Bootstrap from 'bootstrap'; 
 import './Scripts/CommForwardStore.js';
 
 // CSS
-import 'bootstrap/dist/css/bootstrap.min.css'; //consider bootstap-grid if we can get away with it
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import './style.css'
 
 // Components
