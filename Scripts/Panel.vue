@@ -7,7 +7,8 @@
                         <block v-for="block in store.currentPanel" 
                                 :key="block.id" 
                                 :data="block"
-                                v-on:blockClick="blockClick">
+                                v-on:blockClick="blockClick"
+                                v-if="block.isVisible || store.configMode">
                         </block>
                     </div>
                 </div>

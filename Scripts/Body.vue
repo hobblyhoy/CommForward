@@ -28,6 +28,7 @@
     // Create block objects and populate the store.panels
     vueMethods.buildBlocks = function() {
         var self = this;
+        var ignoreIds = JSON.parse(localStorage.getItem('ignoreIds')) || [];
 
         var createAndPushBlocks = function(names, targetArr) {
             names.forEach(function(name) {
@@ -38,6 +39,7 @@
                     , name: name
                     //, logo: id + '.png' //if it's a simple, once used formula why obscure it away into the object?
                     , isSelected: false
+                    , isVisible: ignoreIds.indexOf(id) === -1
                 };
                 
                 targetArr.push(toPush);

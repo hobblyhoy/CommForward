@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="panel-selector-option round-top" 
+                <div class="panel-selector-option round-top"
                         :class="{ 'inactive-panel-shadow': store.showPanel !== 'pain' }"
                         :style="{ 'background-color': store.colorPain }" 
                         v-on:click="store.showPanel='pain'">
