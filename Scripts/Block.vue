@@ -3,13 +3,13 @@
         <div class="block-button round-top round-bottom" 
                 v-on:click="$emit('blockClick', data)"
                 :class="{ pulse: data.isSelected && !store.configMode }">
-            <span>{{data.name}}</span>
-            <img :src="imgSrc" width="96px" height="96px">
+            <span style="margin-bottom: 0.5rem;">{{data.name}}</span>
+            <img :src="data.logoSrc" width="96px" height="96px">
             <div v-if="store.configMode" 
                     class="block-toggle round-top round-bottom"
                     :class="{ dimmed: !data.isVisible }"
                     v-on:click.stop="blockToggleClick">
-                <div class="block-toggle-button">
+                <div v-if="!data.isAddCustom" class="block-toggle-button">
                     <div v-if="data.isVisible">
                         <img src="../Icons/remove.png">
                     </div>
@@ -28,11 +28,20 @@
     var vueComputed = {};
     var vueWatch = {};
 
-    vueComputed.imgSrc = function() {
-        return './Icons/' + this.data.id + '.png';
-    }
-
     vueMethods.blockToggleClick = function() {
+        //// Add Custom Block \\\\
+        console.log('cleeeek');
+        console.log(this.data);
+        if (this.data.isAddCustom) {
+            $(".image-picker").imagepicker();
+            $('#add-custom-modal').modal('show');
+            return;
+        }
+
+        //// TODO Custom block \\\\
+
+
+        //// Regular Block \\\\
         var block = this.data;
         // pull in our local storage
         var ignoreIds = JSON.parse(localStorage.getItem('ignoreIds')) || [];

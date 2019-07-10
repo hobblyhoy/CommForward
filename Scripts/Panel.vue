@@ -10,6 +10,9 @@
                                 v-on:blockClick="blockClick"
                                 v-if="block.isVisible || store.configMode">
                         </block>
+                        <block v-if="store.configMode" 
+                                :data="{id: -1, name: 'Add Custom', logoSrc: './Icons/addCustom.png', isSelected: false, isVisible: true, isAddCustom: true}">
+                        </block>
                     </div>
                 </div>
             </div>

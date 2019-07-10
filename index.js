@@ -4,10 +4,16 @@ import Vue from 'vue';
 // requires more work though, see:
 // https://getbootstrap.com/docs/4.0/getting-started/webpack/
 // import Bootstrap from 'bootstrap'; 
+import './Scripts/JqueryGlobal.js';
+import 'bootstrap';
 import './Scripts/CommForwardStore.js';
+import 'image-picker';
+import _ from 'lodash';
+window._ = _;
 
 // CSS
-import 'bootstrap/dist/css/bootstrap-grid.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'image-picker/image-picker/image-picker.css'
 import './style.css'
 
 // Components

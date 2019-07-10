@@ -12,7 +12,7 @@ var vueData = {
 		, pain: []
 	}
 	, panelSeeds: {
-		need: ['Food', 'Water', 'Raise', 'Recline', 'Change Channel (News)', 'Change Channel (Other)', 'Immediate Attention']
+		need: ['Food', 'Water', 'Raise', 'Recline', 'Change Channel', 'Immediate Attention']
 		, feel: ['Happy', 'Sad', 'Bored', 'Lonely', 'Sick']
 		, pain: ['Head', 'Neck', 'Chest', 'Stomach', 'Arms', 'Hands', 'Groin', 'Bottom', 'Legs', 'Feet']
 	}
@@ -20,7 +20,9 @@ var vueData = {
 	, colorFeel: '#CEEFE4'
 	, colorPain: '#D6DFF0'
 	, borderRadius: '15px'
-	, configMode: false
+	, configMode: true
+	, addCustomName: ''
+	//, addCustomLogo: '' // doesn't work w/ image-picker, need to get it the oldschool way with $.val
 };
 
 vueComputed.currentPanel = function() {
@@ -40,6 +42,17 @@ vueComputed.currentPanelColor = function() {
 	}
 };
 
+vueComputed.logoList = function() {
+	var allPanels = _.concat(this.panelSeeds.need, this.panelSeeds.feel, this.panelSeeds.pain).map(this.toCamelCase);
+	// "just duplicate the images and let them key off the block id, whats the worst that could happen?" -_-
+	return allPanels.filter(function(panel) {return panel !== "stomach" && panel !== "groin" });
+	//return _(allPanels).map('id').value();
+}
+
+vueMethods.toCamelCase = function (string) {
+	var regexParensAndWhitespace = /(\(|\)|\s)/g;
+	return string.charAt(0).toLowerCase() + string.slice(1).replace(regexParensAndWhitespace, ''); 
+};
 
 window.cfStore = new Vue({
     data: function() {

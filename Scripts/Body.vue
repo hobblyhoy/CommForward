@@ -11,6 +11,35 @@
         <div id="panel-container">
             <panel></panel>
         </div>
+        <div class="modal fade" id="add-custom-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="">
+                        Add Custom
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>Name:</div>
+                        <input v-model="store.addCustomName"/>
+                        <div v-if="isMissingCustomName" style="color: red;">Name is required.</div>
+
+                        <div style="margin-top: 2rem;">Image:</div>
+                        <div style="max-height: 50vh; overflow: auto">
+                            <select class="image-picker">
+                                <option value=""></option>
+                                <option v-for="(logo, index) in store.logoList" :key="index" :data-img-src="'./Icons/' + logo + '.png'" :value="logo"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" v-on:click="addCustomSave">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -20,11 +49,6 @@
     var vueComputed = {};
     var vueWatch = {};
 
-    vueMethods.toCamelCase = function (string) {
-        var regexParensAndWhitespace = /(\(|\)|\s)/g;
-        return string.charAt(0).toLowerCase() + string.slice(1).replace(regexParensAndWhitespace, ''); 
-    };
-
     // Create block objects and populate the store.panels
     vueMethods.buildBlocks = function() {
         var self = this;
@@ -32,19 +56,20 @@
 
         var createAndPushBlocks = function(names, targetArr) {
             names.forEach(function(name) {
-                // turn name into camelCase
-                var id = self.toCamelCase(name);
+                var id = this.store.toCamelCase(name);
                 var toPush = {
                     id: id
                     , name: name
-                    //, logo: id + '.png' //if it's a simple, once used formula why obscure it away into the object?
+                    , logoSrc: './Icons/' + id + '.png'
                     , isSelected: false
                     , isVisible: ignoreIds.indexOf(id) === -1
+                    , isAddCustom: false
+                    , isCustom: false
                 };
                 
                 targetArr.push(toPush);
-            });
-        }
+            }.bind(this));
+        }.bind(this);
         
         createAndPushBlocks(this.store.panelSeeds.feel, this.store.panels.feel);
         createAndPushBlocks(this.store.panelSeeds.need, this.store.panels.need);
@@ -53,11 +78,41 @@
         console.log('Finished populating Panels');
     }
 
+    vueMethods.addCustomSave = function() {
+        console.log('addCustomSave');
+        this.isMissingCustomName = false;
+        var addCustomName = this.store.addCustomName;
+        var addCustomIcon = $('.image-picker').val();
+
+        if (addCustomName === '') {
+            this.isMissingCustomName = true;
+            return;
+        }
+        
+        // todo generate unique ids always
+        var newBlock = {
+            id: addCustomIcon || '-1'
+            , name: addCustomName
+            , logoSrc: addCustomIcon ? './Icons/' + addCustomIcon + '.png' : ''
+            , isSelected: false
+            , isVisible: true
+            , isAddCustom: false
+            , isCustom: true
+        };
+        this.store.panels.need.push(newBlock);
+
+        // TODO bug here- figure out why this deselect isn't working
+        $('.image-picker').val('');
+        $('.image-picker').data('picker').destroy();
+        this.store.addCustomName = '';
+    }
+
     export default {
         props: []
         , data: function() {
             return {
                 store: window.cfStore
+                , isMissingCustomName: false
             }
         }
         , methods: vueMethods
@@ -67,7 +122,7 @@
             this.buildBlocks();
         }
         , mounted: function() {
-            console.log('body mounted');
+            console.log('Body.vue mounted');
         }
     }
 </script>
@@ -87,5 +142,16 @@
         margin-top: 15vh;
         height: 85vh; 
         /* overflow-y: auto; */
+    }
+
+    /* Overrides to the image picker */
+    .image_picker_image {
+        width: 80px;
+        height: 80px;
+    }
+    .image_picker_selector{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 </style>
