@@ -32,14 +32,25 @@
     var vueWatch = {};
 
     vueMethods.blockToggleClick = function() {
-        //// Add Custom Block \\\\
+        //// Add Custom Block special path \\\\
         if (this.data.isAddCustom) {
             $(".image-picker").imagepicker();
             $('#add-custom-modal').modal('show');
             return;
         }
 
-        //// Regular Block \\\\
+        //// Custom Block \\\\
+        var block = this.data;
+        if (this.data.isCustom) {
+            var customBlocks = JSON.parse(localStorage.getItem('customBlocks.' + this.store.showPanel)) || [];
+            var block = customBlocks.find(function(customBlock) {
+                return customBlock.id === block.id;
+            });
+            block.isVisible = !block.isVisible;
+            localStorage.setItem('customBlocks.' + this.store.showPanel, JSON.stringify(customBlocks));
+        }
+
+        //// Regular & Custom Block \\\\
         var block = this.data;
         // pull in our local storage
         var ignoreIds = JSON.parse(localStorage.getItem('ignoreIds')) || [];
