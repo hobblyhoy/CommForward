@@ -75,11 +75,16 @@
         createAndPushBlocks(this.store.panelSeeds.need, this.store.panels.need);
         createAndPushBlocks(this.store.panelSeeds.pain, this.store.panels.pain);
 
-        console.log('Finished populating Panels');
+        // Add custom blocks
+        ['feel','need','pain'].forEach(function(type) {
+            var localStorageBlockArray = JSON.parse(localStorage.getItem('customBlocks.' + type)) || [];
+            localStorageBlockArray.forEach(function(customBlockToAdd) {
+                this.store.panels[type].push(customBlockToAdd);
+            }.bind(this));
+        }.bind(this));
     }
 
     vueMethods.addCustomSave = function() {
-        console.log('addCustomSave');
         this.isMissingCustomName = false;
         var addCustomName = this.store.addCustomName;
         var addCustomIcon = $('.image-picker').val();
@@ -89,9 +94,9 @@
             return;
         }
         
-        // todo generate unique ids always
+        // Add block to memory
         var newBlock = {
-            id: addCustomIcon || '-1'
+            id: addCustomIcon ? addCustomIcon +  Date.now() : Date.now()
             , name: addCustomName
             , logoSrc: addCustomIcon ? './Icons/' + addCustomIcon + '.png' : ''
             , isSelected: false
@@ -99,9 +104,17 @@
             , isAddCustom: false
             , isCustom: true
         };
-        this.store.panels.need.push(newBlock);
+        this.store.panels[this.store.showPanel].push(newBlock);
 
-        // TODO bug here- figure out why this deselect isn't working
+        // Add block to local storage
+        var customBlocks = JSON.parse(localStorage.getItem('customBlocks.' + this.store.showPanel)) || [];
+        customBlocks.push(newBlock);
+        localStorage.setItem('customBlocks.' + this.store.showPanel, JSON.stringify(customBlocks));
+
+        // Close the modal
+        $('#add-custom-modal').modal('hide');
+
+        // Clear our reusable variables/dom elements
         $('.image-picker').val('');
         $('.image-picker').data('picker').destroy();
         this.store.addCustomName = '';
@@ -120,9 +133,6 @@
         , watch: vueWatch
         , created: function() {
             this.buildBlocks();
-        }
-        , mounted: function() {
-            console.log('Body.vue mounted');
         }
     }
 </script>

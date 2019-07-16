@@ -20,7 +20,7 @@ var vueData = {
 	, colorFeel: '#CEEFE4'
 	, colorPain: '#D6DFF0'
 	, borderRadius: '15px'
-	, configMode: true
+	, configMode: false
 	, addCustomName: ''
 	//, addCustomLogo: '' // doesn't work w/ image-picker, need to get it the oldschool way with $.val
 };

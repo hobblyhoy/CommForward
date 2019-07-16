@@ -4,17 +4,20 @@
                 v-on:click="$emit('blockClick', data)"
                 :class="{ pulse: data.isSelected && !store.configMode }">
             <span style="margin-bottom: 0.5rem;">{{data.name}}</span>
-            <img :src="data.logoSrc" width="96px" height="96px">
+            <img v-if="data.logoSrc" :src="data.logoSrc" width="96px" height="96px">
             <div v-if="store.configMode" 
                     class="block-toggle round-top round-bottom"
                     :class="{ dimmed: !data.isVisible }"
                     v-on:click.stop="blockToggleClick">
                 <div v-if="!data.isAddCustom" class="block-toggle-button">
-                    <div v-if="data.isVisible">
-                        <img src="../Icons/remove.png">
+                    <div v-if="data.isVisible" style="display: inline-block">
+                        <img src="../Icons/show.png" style="width: 2rem; height: 2rem;">
                     </div>
-                    <div v-else>
-                        <img src="../Icons/add.png">
+                    <div v-else style="display: inline-block">
+                        <img src="../Icons/hide.png" style="width: 2rem; height: 2rem;">
+                    </div>
+                    <div v-if="data.isCustom" v-on:click.stop="blockDeleteClick" style="display: inline-block">
+                        <img src="../Icons/remove.png" style="width: 2rem; height: 2rem;">
                     </div>
                 </div>
             </div>
@@ -30,16 +33,11 @@
 
     vueMethods.blockToggleClick = function() {
         //// Add Custom Block \\\\
-        console.log('cleeeek');
-        console.log(this.data);
         if (this.data.isAddCustom) {
             $(".image-picker").imagepicker();
             $('#add-custom-modal').modal('show');
             return;
         }
-
-        //// TODO Custom block \\\\
-
 
         //// Regular Block \\\\
         var block = this.data;
@@ -57,6 +55,23 @@
         }
         // save back to local storage
         localStorage.setItem('ignoreIds', JSON.stringify(ignoreIds));
+    }
+
+    vueMethods.blockDeleteClick = function() {
+        // Delete it from memory
+        var blockToRemove = this.data;
+        var currentPanel = this.store.panels[this.store.showPanel];
+        _.remove(this.store.panels[this.store.showPanel], function(block) {
+            return blockToRemove === block;
+        });
+        this.$set(this.store.panels[this.store.showPanel],currentPanel);
+
+        // Delete it from local storage
+        var customBlocks = JSON.parse(localStorage.getItem('customBlocks.' + this.store.showPanel)) || [];
+        _.remove(customBlocks, function(block) {
+            return blockToRemove.id === block.id;
+        });
+        localStorage.setItem('customBlocks.' + this.store.showPanel, JSON.stringify(customBlocks));
     }
 
     export default {
