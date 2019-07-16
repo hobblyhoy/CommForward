@@ -1,7 +1,7 @@
 <template>
     <div id="panel-selector" class="container-fluid">
         <div  class="row" style="height: 90%;">
-            <div class="col-4">
+            <div class="col-4" style="height: 100%">
                 <div class="panel-selector-option round-top"
                         :class="{ 'inactive-panel-shadow': store.showPanel !== 'need' }"
                         :style="{ 'background-color': store.colorNeed }"
@@ -9,7 +9,7 @@
                     <div style="padding: 0 10px;">I Need</div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4" style="height: 100%">
                 <div class="panel-selector-option round-top" 
                         :class="{ 'inactive-panel-shadow': store.showPanel !== 'feel' }"
                         :style="{ 'background-color': store.colorFeel }"
@@ -17,7 +17,7 @@
                     <div style="padding: 0 10px;">I Feel</div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4" style="height: 100%"> 
                 <div class="panel-selector-option round-top"
                         :class="{ 'inactive-panel-shadow': store.showPanel !== 'pain' }"
                         :style="{ 'background-color': store.colorPain }" 
